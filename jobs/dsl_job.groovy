@@ -6,11 +6,15 @@ job("my job"){
     shell("echo ${GIT_BRANCH}")
   }
   publishers{
-    if(params["GIT_BRANCH"]=='origin/master'){
-      downstream('second_job', 'SUCCESS')
-    }
-    else{
-      downstream('third_job', 'SUCCESS')
+    downstreamParameterized {
+      trigger('third_job'){
+        condition(${GIT_BRANCH}=='origin/master')
+        triggerWithNoParameters(true)
+      }
+      trigger('second_job'){
+        condition(${GIT_BRANCH}=='origin/relase')
+        triggerWithNoParameters(true)
+      }
     }
   }
 }
