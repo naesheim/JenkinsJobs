@@ -6,12 +6,23 @@ job("my job"){
     shell("echo ${GIT_BRANCH}")
   }
   publishers{
-    downstream('second_job', 'SUCCESS')
+    if (${GIT_BRANCH}=='origin/release'){
+      downstream('second_job', 'SUCCESS')
+    }
+    else{
+      downstream('third_job', 'SUCCESS')
+    }
   }
 }
 
 job("second_job"){
   steps {
-    shell 'echo "test"'
+    shell 'echo "this is the second job"'
+  }
+}
+
+job("third_job"){
+  steps {
+    shell('echo "this is the third job"')
   }
 }
