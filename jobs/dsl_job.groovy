@@ -1,11 +1,17 @@
 job("my job"){
   scm {
-    github 'naesheim/JenkinsJobs'
-  }
-  triggers {
-    scm '@hourly'
+    github 'naesheim/project'
   }
   steps {
-    gradle 'clean test'
+    shell("echo ${GIT_BRANCH}")
+  }
+  publishers{
+    downstream('second_job', 'SUCCESS')
+  }
+}
+
+job("second_job"){
+  steps {
+    shell 'echo "test"'
   }
 }
