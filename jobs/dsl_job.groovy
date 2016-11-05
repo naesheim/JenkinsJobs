@@ -6,7 +6,7 @@ job("my job"){
     shell("echo ${GIT_BRANCH}")
   }
   publishers{
-    if (${GIT_BRANCH}=='origin/release'){
+    if(params["GIT_BRANCH"]=='origin/master'){
       downstream('second_job', 'SUCCESS')
     }
     else{
