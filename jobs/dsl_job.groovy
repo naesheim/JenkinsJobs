@@ -5,16 +5,15 @@ job("my job"){
   steps {
     shell("echo ${GIT_BRANCH}")
   }
-  publishers{
-    downstreamParameterized {
-      trigger('third_job'){
-        condition(${GIT_BRANCH}=='origin/master')
-        triggerWithNoParameters(true)
-      }
-      trigger('second_job'){
-        condition(${GIT_BRANCH}=='origin/relase')
-        triggerWithNoParameters(true)
-      }
+
+  if(${GIT_BRANCH}=='origin/release'){
+    publishers{
+      downstream('second_job')
+    }
+  }
+  else{
+    publishers{
+      downstream('third_job')
     }
   }
 }
