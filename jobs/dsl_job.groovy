@@ -1,6 +1,6 @@
 job("my job"){
   scm {
-    github 'naesheim/project'
+    github 'naesheim/VBAdemo'
   }
   steps {
     shell("echo ${GIT_BRANCH}")
