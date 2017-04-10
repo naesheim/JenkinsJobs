@@ -3,7 +3,7 @@ pipeline {
 		docker 'python:slim'
 	}
 	environment {
-		key = "${gcloud auth print-access-token}"
+		key = "${docker run --rm -ti google/cloud-sdk gcloud auth print-access-token}"
 	}
 	stages {
 		stage('runScript') {	
