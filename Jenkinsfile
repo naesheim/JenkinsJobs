@@ -1,11 +1,15 @@
 pipeline {
 	agent {
-		docker 'hello-world:latest'
+		docker {
+			label 'master'
+			image 'python:slim'
+			args '-v "$PWD/scripts:/scripts"
+		}
 	}
 	stages {
-		stage('init') {
+		stage('runScript') {
 			steps {
-				echo 'Hello'
+				python /scrips/hello.py
 			}
 		}
 	}
