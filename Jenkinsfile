@@ -3,7 +3,7 @@ pipeline {
 		docker {
 			label 'master'
 			image 'python:slim'
-			args '-v "$PWD/scripts:/scripts"
+			args '-v "$PWD/scripts:/scripts"'
 		}
 	}
 	stages {
