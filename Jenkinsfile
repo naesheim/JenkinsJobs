@@ -9,7 +9,7 @@ pipeline {
 	stages {
 		stage('runScript') {
 			steps {
-				sh 'python /scrips/hello.py'
+				sh 'python /scripts/hello.py'
 			}
 		}
 	}
