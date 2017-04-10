@@ -7,8 +7,9 @@ pipeline {
 		}
 	}
 	stages {
-		stage('runScript') {
+		stage('runScript') {	
 			steps {
+				checkout scm
 				sh 'python scripts/hello.py'
 			}
 		}
