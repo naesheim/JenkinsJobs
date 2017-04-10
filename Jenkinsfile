@@ -1,13 +1,9 @@
 pipeline {
 	agent any
-
-	environment {
-		token = sh(returnStdout: true, script:'docker run --rm google/cloud-sdk gcloud auth print-access-token').trim()
-	}
-
 	stages {
 		stage('checkout') {
 			steps {
+				token = sh(returnStdout: true, script:'docker run --rm google/cloud-sdk gcloud auth print-access-token').trim()
 				echo "${token}"
 				checkout scm
 			}
