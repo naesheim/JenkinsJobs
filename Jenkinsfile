@@ -3,10 +3,7 @@ pipeline {
 	stages {
 		stage('checkout') {
 			steps {
-				script{
-					def token = "${docker run --rm google/cloud-sdk gcloud auth print-access-token}"
-				}
-				echo "${token}"
+				sh token.sh
 				checkout scm
 			}
 		}
