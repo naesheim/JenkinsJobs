@@ -3,8 +3,8 @@ pipeline {
 	stages {
 		stage('checkout') {
 			steps {
-				sh token.sh
 				checkout scm
+				sh 'token.sh'
 			}
 		}
 
