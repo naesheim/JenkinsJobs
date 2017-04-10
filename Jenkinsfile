@@ -4,7 +4,8 @@ pipeline {
 		stage('checkout') {
 			steps {
 				checkout scm
-				sh './script/token.sh'
+				sh 'ls /scripts'
+				sh './scripts/token.sh'
 			}
 		}
 
