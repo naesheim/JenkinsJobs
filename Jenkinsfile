@@ -3,13 +3,13 @@ pipeline {
 		docker {
 			label 'master'
 			image 'python:slim'
-			args '-v "$PWD/scripts:/scripts"'
+			args '-it -v $PWD/scripts:/scripts'
 		}
 	}
 	stages {
 		stage('runScript') {
 			steps {
-				sh 'python /scripts/hello.py'
+				sh 'python scripts/hello.py'
 			}
 		}
 	}
